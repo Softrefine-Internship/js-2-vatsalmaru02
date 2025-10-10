@@ -4,12 +4,336 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+        font-family: "Inter", sans-serif;
+      }
+
+      .contact-us {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.5;
+        height: 100vh;
+        background-image: radial-gradient(
+            circle at 5% 25%,
+            rgba(238, 190, 250, 0.6) 0%,
+            transparent 20%
+          ),
+          radial-gradient(
+            circle at 30% 10%,
+            rgba(176, 151, 250, 0.5) 0%,
+            transparent 25%
+          );
+      }
+
+      .container {
+        width: 45%;
+      }
+
+      .container-2 {
+        margin-bottom: 8rem;
+      }
+
+      h2 {
+        font-size: 3.6rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1.8rem;
+        color: #495057;
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-top: 2rem;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+      }
+
+      .name {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+
+      label {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      input,
+      select,
+      option,
+      textarea {
+        font-size: 16px;
+        padding: 8px 16px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+      }
+
+      .phone-no {
+        display: flex;
+        align-items: center;
+        border-collapse: collapse;
+      }
+
+      .country {
+        border-right: none;
+        border-radius: 6px 0 0 6px;
+        padding: 7px 0 8px 16px;
+        color: #868e96;
+      }
+
+      .number {
+        border-left: none;
+        border-radius: 0 6px 6px 0;
+        padding: 7px 0 8px 16px;
+        flex: 1;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      .policy {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.5rem 0 1rem 0;
+      }
+
+      .policy p {
+        font-size: 1.6rem;
+        text-align: left;
+        align-self: center;
+        margin: 0;
+      }
+
+      .policy-link:link,
+      .policy-link:visited {
+        font-weight: 500;
+        color: #4848e0;
+        text-decoration: none;
+      }
+
+      .btn {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        background-color: #4848e0;
+        display: inline-block;
+        padding: 0.8rem;
+      }
+
+      .btn:hover {
+        background-color: #4040c2;
+        transform: scale(1.02);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 3.6rem;
+        height: 2rem;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ced4da;
+        border-radius: 28px;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.2rem;
+        width: 1.2rem;
+        left: 0.4rem;
+        bottom: 0.4rem;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #4848e0;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #4848e0;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(20px);
+      }
+
+      /* error message */
+      .error {
+        color: red;
+        font-size: 1rem;
+        margin-top: -0.3rem;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <section class="contact-us">
+      <div class="container">
+        <div class="container-2">
+          <h2>Contact Sales</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione,
+            deleniti?
+          </p>
+        </div>
+        <div class="container-3">
+          <form id="contactForm" novalidate>
+            <div class="name">
+              <div class="form-field">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" />
+                <small class="error"></small>
+              </div>
+              <div class="form-field">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" />
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" />
+              <small class="error"></small>
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" />
+              <small class="error"></small>
+            </div>
+
+            <div class="form-field">
+              <label for="ph-no">Phone Number</label>
+              <div class="phone-no">
+                <select name="country-code" class="country" id="code">
+                  <option value="us">US</option>
+                  <option value="india">India</option>
+                </select>
+                <input type="number" class="number" name="ph-no" id="ph-no" />
+              </div>
+              <small class="error"></small>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                cols="30"
+                rows="4"
+              ></textarea>
+              <small class="error"></small>
+            </div>
+
+            <div class="policy">
+              <label class="switch">
+                <input type="checkbox" id="policyCheck" />
+                <span class="slider"></span>
+              </label>
+              <p>
+                By selecting this, you agree to our
+                <a href="#" class="policy-link">privacy policy</a>
+              </p>
+            </div>
+
+            <small id="policyError" class="error"></small>
+
+            <input class="btn" type="submit" value="Let's Talk" />
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+
   <script>
-    // write javascript here
+    const form = document.getElementById("contactForm");
+    const fields = ["fname", "lname", "company", "email", "ph-no", "message"];
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Clear previous errors
+      const errors = document.querySelectorAll(".error");
+      for (let i = 0; i < errors.length; i++) {
+        errors[i].textContent = "";
+      }
+
+      // Validate each field
+      for (let i = 0; i < fields.length; i++) {
+        const field = fields[i];
+        const input = document.getElementById(field);
+        const error = input.closest(".form-field").querySelector(".error");
+
+        if (!input.value.trim()) {
+          error.textContent = "This field is required";
+          valid = false;
+        } else if (field === "email" && !/\S+@\S+\.\S+/.test(input.value)) {
+          error.textContent = "Please enter a valid email";
+          valid = false;
+        } else if (field === "ph-no" && input.value.length < 10) {
+          error.textContent = "Enter a valid phone number";
+          valid = false; 
+        }
+      }
+
+      // Check policy checkbox 
+      const policy = document.getElementById("policyCheck");
+      const policyError = document.getElementById("policyError");
+      if (!policy.checked) {
+        policyError.textContent = "You must agree to the privacy policy";
+        valid = false; 
+      }
+
+      if (valid) {
+        alert("Form submitted successfully!");
+        form.reset();
+      }
+    });
   </script>
 </html>
