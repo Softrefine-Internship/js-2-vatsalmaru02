@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Model</title>
     <style>
       * {
         padding: 0;
@@ -154,6 +154,13 @@
         color: #fff;
         background-color: #ab0808;
       }
+
+      .show-modal:disabled {
+        background-color: #ccc;
+        color: #666;
+        border: 1px solid #999;
+        cursor: not-allowed;
+      }
     </style>
   </head>
   <body>
@@ -217,7 +224,18 @@
     }
 
     btnCloseModal.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
     btnCancel.addEventListener("click", closeModal);
+
+    btnDeactivate.addEventListener("click", function () {
+      const showModalBtn = document.querySelector(".show-modal");
+      showModalBtn.textContent = "Deactivated";
+
+      showModalBtn.disabled = true;
+
+      closeModal();
+    });
+
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && !modal.classList.contains("hidden")) {
         closeModal();

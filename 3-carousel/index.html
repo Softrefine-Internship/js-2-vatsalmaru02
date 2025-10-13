@@ -3,13 +3,177 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Carousel</title>
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.8%;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #2f3a4a;
+        font-family: sans-serif;
+      }
+
+      .carousel {
+        position: relative;
+        width: 90%;
+        max-width: 70rem;
+        height: 40rem;
+        overflow: hidden;
+        border-radius: 1rem;
+      }
+
+      .slides {
+        display: flex;
+        transition: all 0.5s ease-in-out;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3a4655;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #fff;
+        color: #fff;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .prev:hover,
+      .next:hover {
+        background: rgb(255, 255, 255, 0.3);
+      }
+
+      .prev {
+        left: 1rem;
+      }
+
+      .next {
+        right: 1rem;
+      }
+
+      .dots {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.8rem;
+      }
+
+      .dot {
+        width: 1rem;
+        height: 1rem;
+        background-color: #aaa;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .dot.active {
+        background-color: #fff;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide">
+          <img src="img/tour-img02.jpg" alt="Slide 1" />
+        </div>
+        <div class="slide">
+          <img src="img/tour-img03.jpg" alt="Slide 1" />
+        </div>
+        <div class="slide">
+          <img src="img/tour-img04.jpg" alt="Slide 1" />
+        </div>
+        <div class="slide">
+          <img src="img/tour-img08.jpg" alt="Slide 1" />
+        </div>
+      </div>
+
+      <div class="prev">&#10094;</div>
+      <div class="next">&#10095;</div>
+
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </body>
   <script>
-    // write javascript here
+    const slides = document.querySelector(".slides");
+    const slideElement = document.querySelectorAll(".slide");
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+    const dots = document.querySelectorAll(".dot");
+    let index = 0;
+
+    function showSlide(i) {
+      slides.style.transform = `translateX(-${i * 100}%)`;
+      for (let j = 0; j < dots.length; j++) {
+        dots[j].classList.remove("active");
+      }
+      dots[i].classList.add("active");
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slideElement.length;
+      showSlide(index);
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slideElement.length) % slideElement.length;
+      showSlide(index);
+    }
+
+    function goToSlide(i) {
+      index = i;
+      showSlide(index);
+    }
+
+    next.addEventListener("click", nextSlide);
+    prev.addEventListener("click", prevSlide);
+
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].addEventListener("click", function () {
+        goToSlide(i);
+      });
+    }
   </script>
 </html>
