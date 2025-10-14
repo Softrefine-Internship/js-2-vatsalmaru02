@@ -106,6 +106,60 @@
       .dot.active {
         background-color: #fff;
       }
+
+      @media (max-width: 48em) {
+        .carousel {
+          height: 30rem;
+        }
+
+        .prev,
+        .next {
+          width: 3.5rem;
+          height: 3.5rem;
+          font-size: 1.8rem;
+        }
+
+        .dot {
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+      }
+
+     
+      @media (max-width: 37.5em) {
+        .carousel {
+          height: 25rem;
+        }
+
+        .prev,
+        .next {
+          width: 3rem;
+          height: 3rem;
+          font-size: 1.6rem;
+        }
+
+        .dot {
+          width: 0.7rem;
+          height: 0.7rem;
+        }
+      }
+
+      @media (max-width: 25em) {
+        .carousel {
+          height: 20rem;
+        }
+
+        .prev,
+        .next {
+          width: 2.5rem;
+          height: 2.5rem;
+          font-size: 1.4rem;
+        }
+
+        .dots {
+          gap: 0.5rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -128,21 +182,25 @@
       <div class="prev">&#10094;</div>
       <div class="next">&#10095;</div>
 
-      <div class="dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
+      <div class="dots"></div>
     </div>
   </body>
   <script>
     const slides = document.querySelector(".slides");
-    const slideElement = document.querySelectorAll(".slide");
+    const slidesElement = document.querySelectorAll(".slide");
     const prev = document.querySelector(".prev");
     const next = document.querySelector(".next");
-    const dots = document.querySelectorAll(".dot");
+    const dotsContainer = document.querySelector(".dots");
     let index = 0;
+
+    for (let i = 0; i < slidesElement.length; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll(".dot");
 
     function showSlide(i) {
       slides.style.transform = `translateX(-${i * 100}%)`;
@@ -153,12 +211,12 @@
     }
 
     function nextSlide() {
-      index = (index + 1) % slideElement.length;
+      index = (index + 1) % slidesElement.length;
       showSlide(index);
     }
 
     function prevSlide() {
-      index = (index - 1 + slideElement.length) % slideElement.length;
+      index = (index - 1 + slidesElement.length) % slidesElement.length;
       showSlide(index);
     }
 
@@ -175,5 +233,13 @@
         goToSlide(i);
       });
     }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowRight") {
+        nextSlide();
+      } else if (event.key === "ArrowLeft") {
+        prevSlide();
+      }
+    });
   </script>
 </html>

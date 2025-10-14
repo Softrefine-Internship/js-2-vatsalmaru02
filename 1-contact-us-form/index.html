@@ -208,6 +208,73 @@
         font-size: 1rem;
         margin-top: -0.3rem;
       }
+
+      /* For laptops and small desktops */
+      @media (max-width: 75em) {
+        .container {
+          width: 55%;
+        }
+      }
+
+      /* For tablets (landscape & portrait) */
+      @media (max-width: 62em) {
+        html {
+          font-size: 52.5%;
+        }
+
+        .container {
+          width: 65%;
+          padding: 3rem;
+        }
+
+        .container-2 {
+          margin-bottom: 0;
+        }
+
+        .name {
+          flex-direction: column;
+        }
+        h2 {
+          font-size: 3.2rem;
+        }
+        p {
+          font-size: 1.6rem;
+        }
+      }
+
+      /* For large mobile devices */
+      @media (max-width: 48em) {
+        .container {
+          width: 80%;
+          padding: 2.5rem;
+        }
+        form {
+          gap: 1rem;
+        }
+        .btn {
+          font-size: 1.4rem;
+        }
+      }
+
+      /* For small mobile devices */
+      @media (max-width: 30em) {
+        html {
+          font-size: 55%;
+        }
+        .container {
+          width: 95%;
+          padding: 2rem;
+        }
+        .policy {
+          align-items: flex-start;
+        }
+        h2 {
+          font-size: 2.8rem;
+        }
+        p {
+          font-size: 1.4rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -293,10 +360,12 @@
   <script>
     const form = document.getElementById("contactForm");
     const fields = ["fname", "lname", "company", "email", "ph-no", "message"];
+    const policy = document.getElementById("policyCheck");
+    const policyError = document.getElementById("policyError");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      let valid = true;
+      let isValid = true;
 
       // Clear previous errors
       const errors = document.querySelectorAll(".error");
@@ -312,25 +381,24 @@
 
         if (!input.value.trim()) {
           error.textContent = "This field is required";
-          valid = false;
+          isValid = false;
         } else if (field === "email" && !/\S+@\S+\.\S+/.test(input.value)) {
           error.textContent = "Please enter a valid email";
-          valid = false;
+          isValid = false;
         } else if (field === "ph-no" && input.value.length < 10) {
           error.textContent = "Enter a valid phone number";
-          valid = false; 
+          isValid = false;
         }
       }
 
-      // Check policy checkbox 
-      const policy = document.getElementById("policyCheck");
-      const policyError = document.getElementById("policyError");
+      // Check policy checkbox
       if (!policy.checked) {
         policyError.textContent = "You must agree to the privacy policy";
-        valid = false; 
+        isValid = false;
       }
 
-      if (valid) {
+      // Success
+      if (isValid) {
         alert("Form submitted successfully!");
         form.reset();
       }
